@@ -1,0 +1,8 @@
+on:
+  push:
+    branches:
+      - uat
+
+jobs:
+  deploy-uat:
+    runs-on: ubuntu-latest
