@@ -1,0 +1,80 @@
+table DIM_RAIN_CATEGORY
+	lineageTag: e79afc9f-b86d-46e1-b6af-6df66099cdaa
+	sourceLineageTag: [dbo].[DIM_RAIN_CATEGORY]
+
+	measure DIM_RAIN_CATEGORY =
+			
+			DATATABLE(
+			    "RAIN_CATEGORY_NAME", STRING,
+			    "MIN_RAINFALL_MM", DOUBLE,
+			    "MAX_RAINFALL_MM", DOUBLE,
+			    "DESCRIPTION", STRING,
+			    {
+			        {"NO_RAIN", 0.0, 0.0, "No recorded rainfall"},
+			        {"LIGHT", 0.0, 2.0, "Light drizzle or passing showers (0-2 mm)"},
+			        {"MODERATE", 2.0, 10.0, "Moderate steady rain (2-10 mm)"},
+			        {"HEAVY", 10.0, 9999.0, "Heavy rain, storm conditions (>10 mm)"}
+			    }
+			)
+		lineageTag: 2aa68012-c083-4da1-8f5c-876883cf80db
+
+		changedProperty = Name
+
+	column RAIN_CAT_KEY
+		dataType: double
+		lineageTag: 205158f4-29e0-4d03-a535-1fa8ee8e7194
+		sourceLineageTag: RAIN_CAT_KEY
+		summarizeBy: none
+		sourceColumn: RAIN_CAT_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CATEGORY_NAME
+		dataType: string
+		lineageTag: a88bed05-05df-4f8a-81c2-1d25a6489967
+		sourceLineageTag: CATEGORY_NAME
+		summarizeBy: none
+		sourceColumn: CATEGORY_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column MIN_RAINFALL_MM
+		dataType: double
+		lineageTag: d49d6a7a-495a-4b8c-9b7a-35c554091234
+		sourceLineageTag: MIN_RAINFALL_MM
+		summarizeBy: none
+		sourceColumn: MIN_RAINFALL_MM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MAX_RAINFALL_MM
+		dataType: double
+		lineageTag: debf8173-9ef6-4075-bfe9-561579a95c81
+		sourceLineageTag: MAX_RAINFALL_MM
+		summarizeBy: none
+		sourceColumn: MAX_RAINFALL_MM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DESCRIPTION
+		dataType: string
+		lineageTag: 4f46b3d9-d3cd-4075-83ad-b969a4690ecf
+		sourceLineageTag: DESCRIPTION
+		summarizeBy: none
+		sourceColumn: DESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_RAIN_CATEGORY = entity
+		mode: directLake
+		source
+			entityName: DIM_RAIN_CATEGORY
+			schemaName: dbo
+			expressionSource: 'DirectLake - Snowflake_to_Fabric'
+

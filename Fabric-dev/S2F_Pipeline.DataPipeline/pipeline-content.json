@@ -1,0 +1,90 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "RefreshDataflow",
+        "typeProperties": {
+          "dataflowId": "86bb992c-08aa-8fe5-4839-c4282c7c97d1",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "notifyOption": "NoNotification",
+          "dataflowType": "DataflowFabric",
+          "executeMashupQueriesOnly": true
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Load Snowflake Data",
+        "dependsOn": []
+      },
+      {
+        "type": "PBISemanticModelRefresh",
+        "typeProperties": {
+          "method": "POST",
+          "groupId": "2d53eebb-3a0f-4511-8c28-23a1ae71c035",
+          "datasetId": "e500866d-d8cb-41f6-982d-e0f3fa3b2256",
+          "commitMode": "Transactional",
+          "objects": [
+            {
+              "table": ""
+            }
+          ],
+          "waitOnCompletion": true,
+          "operationType": "SemanticModelRefresh"
+        },
+        "externalReferences": {
+          "connection": "6bb463ff-447d-4865-8492-a18b695fec33"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Semantic model refresh1",
+        "dependsOn": [
+          {
+            "activity": "Load Snowflake Data",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "MicrosoftTeams",
+        "typeProperties": {
+          "content": "<p>Fabric Pipeline Failed</p>\n<p><br></p>",
+          "chatId": {
+            "value": "Sunehasaini15@gmail.com",
+            "type": "Expression"
+          },
+          "operationType": "SendMessageInGroupChat"
+        },
+        "externalReferences": {
+          "connection": "07349df5-04b4-441d-b007-77dee73519ee"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "MicrosoftTeams1",
+        "dependsOn": [
+          {
+            "activity": "Load Snowflake Data",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

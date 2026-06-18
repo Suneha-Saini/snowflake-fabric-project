@@ -1,0 +1,62 @@
+table DIM_WIND_DIRECTION
+	lineageTag: 1de31d45-edb0-41e3-b246-6f5fc302d4b5
+	sourceLineageTag: [dbo].[DIM_WIND_DIRECTION]
+
+	measure 'Predominant Wind Gust Dir' = ```
+			
+			VAR DirCounts = 
+			    ADDCOLUMNS(
+			        VALUES(DIM_WIND_DIRECTION[DIRECTION_CODE]),
+			        "GustCount", CALCULATE(COUNTROWS(FACT_DAILY_WEATHER))
+			    )
+			RETURN MAXX(TOPN(1, DirCounts, [GustCount]), DIM_WIND_DIRECTION[DIRECTION_CODE])
+			```
+		lineageTag: d40032ce-eb88-44a5-bd61-a4bf95366098
+
+		changedProperty = Name
+
+	column WIND_DIR_KEY
+		dataType: double
+		lineageTag: fd9c4cd6-b7f5-4969-bc86-65629f1b63d5
+		sourceLineageTag: WIND_DIR_KEY
+		summarizeBy: none
+		sourceColumn: WIND_DIR_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DIRECTION_CODE
+		dataType: string
+		lineageTag: 25f39986-96e5-4394-b535-b5ddd07a4135
+		sourceLineageTag: DIRECTION_CODE
+		summarizeBy: none
+		sourceColumn: DIRECTION_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DIRECTION_NAME
+		dataType: string
+		lineageTag: e9cd72c2-fed8-4f33-89b2-d3dfc065c4a7
+		sourceLineageTag: DIRECTION_NAME
+		summarizeBy: none
+		sourceColumn: DIRECTION_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column QUADRANT
+		dataType: string
+		lineageTag: d8b9f2b7-51ee-43f8-9ba6-4569826356a0
+		sourceLineageTag: QUADRANT
+		summarizeBy: none
+		sourceColumn: QUADRANT
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_WIND_DIRECTION = entity
+		mode: directLake
+		source
+			entityName: DIM_WIND_DIRECTION
+			schemaName: dbo
+			expressionSource: 'DirectLake - Snowflake_to_Fabric'
+

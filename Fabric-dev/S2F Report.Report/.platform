@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "S2F Report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8ff27bcd-d024-8105-4fb8-ddb2e500a8ac"
+  }
+}

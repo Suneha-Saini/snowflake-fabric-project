@@ -1,0 +1,427 @@
+table FACT_DAILY_WEATHER
+	lineageTag: c70a1bfa-5de6-4f3a-b176-e4fa489ce3c9
+	sourceLineageTag: [dbo].[FACT_DAILY_WEATHER]
+
+	measure 'Avg Max Temp' = AVERAGE(FACT_DAILY_WEATHER[MAX_TEMP_C])
+		lineageTag: 91720377-6435-4945-a3d4-63a3a60d4b8c
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Extreme Heat Days' = COUNTROWS(FILTER(FACT_DAILY_WEATHER, FACT_DAILY_WEATHER[MAX_TEMP_C] > 35))
+		formatString: 0
+		lineageTag: 33f38b34-4256-4c33-96f3-4ae2b6bab5f5
+
+		changedProperty = Name
+
+	measure '95th Percentile Max Temp' = PERCENTILEX.INC(FACT_DAILY_WEATHER, FACT_DAILY_WEATHER[MAX_TEMP_C], 0.95)
+		lineageTag: 0829b10a-5b6c-405c-a8b2-cb47f9e7229e
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Diurnal Temp Range' = AVERAGEX(FACT_DAILY_WEATHER, FACT_DAILY_WEATHER[MAX_TEMP_C] - FACT_DAILY_WEATHER[MIN_TEMP_C])
+		lineageTag: 89eccab4-5fea-426a-a8ae-ba98be256a9b
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Max Temp Volatility' = STDEV.S(FACT_DAILY_WEATHER[MAX_TEMP_C])
+		lineageTag: 105b55aa-d6ba-42ab-92f2-a4a59ddf67db
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Rainfall' = SUM(FACT_DAILY_WEATHER[RAINFALL_MM])
+		lineageTag: 9557918f-28b3-41e1-ad47-538dd431d782
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Rainy Days' = COUNTROWS(FILTER(FACT_DAILY_WEATHER, FACT_DAILY_WEATHER[RAINFALL_MM] > 1))
+		formatString: 0
+		lineageTag: d5dcc66f-bb29-4a2f-86ef-31e0d8ce68b7
+
+		changedProperty = Name
+
+	measure 'Rainy Day Pct' = DIVIDE([Rainy Days], COUNTROWS(FACT_DAILY_WEATHER), 0)
+		lineageTag: 98986326-9e90-44cf-87e0-753bd24d9152
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Rainfall Intensity' = CALCULATE(AVERAGE(FACT_DAILY_WEATHER[RAINFALL_MM]), FACT_DAILY_WEATHER[RAINFALL_MM] > 1)
+		lineageTag: 562eeff3-346d-4914-85aa-a349933e401b
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Water Balance (mm)' = SUM(FACT_DAILY_WEATHER[RAINFALL_MM]) - SUM(FACT_DAILY_WEATHER[EVAPORATION_MM])
+		lineageTag: 4b8bf5e0-37ef-4b62-a992-07161d3c4b39
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Heavy Rain Days' = COUNTROWS(FILTER(FACT_DAILY_WEATHER, FACT_DAILY_WEATHER[RAINFALL_MM] >= 50))
+		formatString: 0
+		lineageTag: bfb8a601-d26c-4b3e-a5ce-ac4ae08af33d
+
+		changedProperty = Name
+
+	measure 'Avg Wind Gust Speed' = AVERAGE(FACT_DAILY_WEATHER[WIND_GUST_SPEED_KMH])
+		lineageTag: 4813051c-1fe3-4908-a72a-b85e21038fdf
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Wind Speed 9AM' = CALCULATE(AVERAGE(FACT_DAILY_WEATHER[WIND_SPEED_9AM_KMH]), USERELATIONSHIP(FACT_DAILY_WEATHER[WIND_9AM_DIR_KEY], DIM_WIND_DIRECTION[WIND_DIR_KEY]))
+		lineageTag: 3639894b-d0e7-4083-97c6-43177d34aab7
+
+		changedProperty = Name
+
+	measure 'Avg Wind Speed 3PM' = CALCULATE(AVERAGE(FACT_DAILY_WEATHER[WIND_SPEED_3PM_KMH]), USERELATIONSHIP(FACT_DAILY_WEATHER[WIND_3PM_DIR_KEY], DIM_WIND_DIRECTION[WIND_DIR_KEY]))
+		lineageTag: d828d653-da1c-4a99-809f-c4ddb67d54f4
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Wind Speed Diurnal Change' = [Avg Wind Speed 3PM] - [Avg Wind Speed 9AM]
+		lineageTag: 36970221-c08b-4e10-9c47-356d6ece15c4
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Gale Force Days' = COUNTROWS(FILTER(FACT_DAILY_WEATHER, FACT_DAILY_WEATHER[WIND_GUST_SPEED_KMH] >= 62))
+		formatString: 0
+		lineageTag: c529969a-f81c-4a72-9d34-83453249c3ef
+
+		changedProperty = Name
+
+	measure 'Avg Humidity 9AM' = AVERAGE(FACT_DAILY_WEATHER[HUMIDITY_9AM_PCT])
+		lineageTag: 1cf72e59-c434-4818-944f-6eae1367b374
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Humidity 3PM' = AVERAGE(FACT_DAILY_WEATHER[HUMIDITY_3PM_PCT])
+		lineageTag: 64910538-266c-44fc-a8fd-f2a85c6463cd
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Daily Pressure' = AVERAGEX(FACT_DAILY_WEATHER, DIVIDE(FACT_DAILY_WEATHER[PRESSURE_9AM_HPA] + FACT_DAILY_WEATHER[PRESSURE_3PM_HPA], 2))
+		lineageTag: 6a262351-3639-4234-9f8e-85dc982f99b7
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Discomfort Index' = AVERAGEX(FACT_DAILY_WEATHER, FACT_DAILY_WEATHER[TEMP_3PM_C] + (0.5555 * (((6.11 * EXP(5417.7530 * (1/273.16 - 1/(273.15 + FACT_DAILY_WEATHER[TEMP_3PM_C])))) * (FACT_DAILY_WEATHER[HUMIDITY_3PM_PCT]/100)) - 10)))
+		lineageTag: bcaac397-46e4-4a03-a066-e01c1d2780ea
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Pressure Drop (9AM to 3PM)' = AVERAGEX(FACT_DAILY_WEATHER, FACT_DAILY_WEATHER[PRESSURE_9AM_HPA] - FACT_DAILY_WEATHER[PRESSURE_3PM_HPA])
+		lineageTag: 2e85c847-1f85-4d20-b6e1-f42004dc1d6e
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Cloud Cover (Oktas)' = AVERAGEX(FACT_DAILY_WEATHER, DIVIDE(FACT_DAILY_WEATHER[CLOUD_9AM_OKTAS] + FACT_DAILY_WEATHER[CLOUD_3PM_OKTAS], 2))
+		lineageTag: 2f58137f-6da5-4be8-96f7-2c8172c0196e
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column OBSERVATION_ID
+		dataType: string
+		lineageTag: 28db763a-8426-47e9-818b-d4b3c630e5d2
+		sourceLineageTag: OBSERVATION_ID
+		summarizeBy: none
+		sourceColumn: OBSERVATION_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LOCATION_KEY
+		dataType: double
+		lineageTag: 2058e03c-5a37-4f0d-b731-c6d2c7e718c9
+		sourceLineageTag: LOCATION_KEY
+		summarizeBy: none
+		sourceColumn: LOCATION_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MIN_TEMP_C
+		dataType: double
+		lineageTag: b0d03a3b-6b4f-4f32-b96d-064f3f997ea8
+		sourceLineageTag: MIN_TEMP_C
+		summarizeBy: sum
+		sourceColumn: MIN_TEMP_C
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MAX_TEMP_C
+		dataType: double
+		lineageTag: c56d116c-5ba4-4373-8a9f-a84075ae784b
+		sourceLineageTag: MAX_TEMP_C
+		summarizeBy: sum
+		sourceColumn: MAX_TEMP_C
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TEMP_RANGE_C
+		dataType: double
+		lineageTag: 962d0e63-fbc9-4e84-9fdf-1dcafb29b829
+		sourceLineageTag: TEMP_RANGE_C
+		summarizeBy: sum
+		sourceColumn: TEMP_RANGE_C
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RAINFALL_MM
+		dataType: double
+		lineageTag: df83c783-9a86-412d-95fe-ced0b6912a96
+		sourceLineageTag: RAINFALL_MM
+		summarizeBy: sum
+		sourceColumn: RAINFALL_MM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EVAPORATION_MM
+		dataType: double
+		lineageTag: 8daaaa8f-ef16-4ae2-b1d8-43bdfa81dfad
+		sourceLineageTag: EVAPORATION_MM
+		summarizeBy: sum
+		sourceColumn: EVAPORATION_MM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SUNSHINE_HOURS
+		dataType: double
+		lineageTag: fac6ac4a-15e5-4c42-8cc5-dfd3451e4795
+		sourceLineageTag: SUNSHINE_HOURS
+		summarizeBy: sum
+		sourceColumn: SUNSHINE_HOURS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WIND_GUST_SPEED_KMH
+		dataType: double
+		lineageTag: 886cba04-7b00-4b56-a432-80055f03e192
+		sourceLineageTag: WIND_GUST_SPEED_KMH
+		summarizeBy: sum
+		sourceColumn: WIND_GUST_SPEED_KMH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WIND_SPEED_9AM_KMH
+		dataType: double
+		lineageTag: 6efa2731-5f4f-452f-98c4-90685a1e9824
+		sourceLineageTag: WIND_SPEED_9AM_KMH
+		summarizeBy: sum
+		sourceColumn: WIND_SPEED_9AM_KMH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WIND_SPEED_3PM_KMH
+		dataType: double
+		lineageTag: aa3a94ae-655a-46dc-8f52-0e9041c1a7aa
+		sourceLineageTag: WIND_SPEED_3PM_KMH
+		summarizeBy: sum
+		sourceColumn: WIND_SPEED_3PM_KMH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column HUMIDITY_9AM_PCT
+		dataType: double
+		lineageTag: 3da30c69-d12f-4550-90c8-af3c9b799978
+		sourceLineageTag: HUMIDITY_9AM_PCT
+		summarizeBy: sum
+		sourceColumn: HUMIDITY_9AM_PCT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column HUMIDITY_3PM_PCT
+		dataType: double
+		lineageTag: b60b68de-784c-498b-8ddf-82a1f0584ffd
+		sourceLineageTag: HUMIDITY_3PM_PCT
+		summarizeBy: sum
+		sourceColumn: HUMIDITY_3PM_PCT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PRESSURE_9AM_HPA
+		dataType: double
+		lineageTag: 43349be9-0270-42bb-8179-b7a0f2a2bba0
+		sourceLineageTag: PRESSURE_9AM_HPA
+		summarizeBy: sum
+		sourceColumn: PRESSURE_9AM_HPA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PRESSURE_3PM_HPA
+		dataType: double
+		lineageTag: fe0f829f-31ad-4202-87aa-d4108aa6b980
+		sourceLineageTag: PRESSURE_3PM_HPA
+		summarizeBy: sum
+		sourceColumn: PRESSURE_3PM_HPA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CLOUD_9AM_OKTAS
+		dataType: double
+		lineageTag: 17ce00ed-1c2a-4f57-8ebe-ccf11c49d568
+		sourceLineageTag: CLOUD_9AM_OKTAS
+		summarizeBy: sum
+		sourceColumn: CLOUD_9AM_OKTAS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CLOUD_3PM_OKTAS
+		dataType: double
+		lineageTag: e5aa2039-7a00-4631-8e4e-eb9f9ac59861
+		sourceLineageTag: CLOUD_3PM_OKTAS
+		summarizeBy: sum
+		sourceColumn: CLOUD_3PM_OKTAS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TEMP_9AM_C
+		dataType: double
+		lineageTag: 1daa8f1e-0913-46b7-90ce-7a97e5acf611
+		sourceLineageTag: TEMP_9AM_C
+		summarizeBy: sum
+		sourceColumn: TEMP_9AM_C
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TEMP_3PM_C
+		dataType: double
+		lineageTag: 99c43b86-d113-4d12-be1a-ef672dafabff
+		sourceLineageTag: TEMP_3PM_C
+		summarizeBy: sum
+		sourceColumn: TEMP_3PM_C
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RAIN_TODAY
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ffcb13f9-3ec7-4ac9-bc0f-ef8cf833a931
+		sourceLineageTag: RAIN_TODAY
+		summarizeBy: none
+		sourceColumn: RAIN_TODAY
+
+		annotation SummarizationSetBy = Automatic
+
+	column TEMPERATURE_BAND
+		dataType: string
+		lineageTag: 5485bb63-133f-4de8-b219-e40dcb95ca29
+		sourceLineageTag: TEMPERATURE_BAND
+		summarizeBy: none
+		sourceColumn: TEMPERATURE_BAND
+
+		annotation SummarizationSetBy = Automatic
+
+	column RAIN_CATEGORY
+		dataType: string
+		lineageTag: 87e8a90f-d719-42a8-bdb0-770f82c6dca6
+		sourceLineageTag: RAIN_CATEGORY
+		summarizeBy: none
+		sourceColumn: RAIN_CATEGORY
+
+		annotation SummarizationSetBy = Automatic
+
+	column GUST_DIR_KEY
+		dataType: double
+		lineageTag: 6d9b5ddb-ae07-485e-809f-37a575932d17
+		sourceLineageTag: GUST_DIR_KEY
+		summarizeBy: none
+		sourceColumn: GUST_DIR_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WIND_9AM_DIR_KEY
+		dataType: double
+		lineageTag: c1cb6451-5428-4734-b3e3-9c9e9efd8f6c
+		sourceLineageTag: WIND_9AM_DIR_KEY
+		summarizeBy: sum
+		sourceColumn: WIND_9AM_DIR_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WIND_3PM_DIR_KEY
+		dataType: double
+		lineageTag: 8cf901fa-94c1-423a-a645-f64d73e7366f
+		sourceLineageTag: WIND_3PM_DIR_KEY
+		summarizeBy: sum
+		sourceColumn: WIND_3PM_DIR_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FACT_DAILY_WEATHER = entity
+		mode: directLake
+		source
+			entityName: FACT_DAILY_WEATHER
+			schemaName: dbo
+			expressionSource: 'DirectLake - Snowflake_to_Fabric'
+

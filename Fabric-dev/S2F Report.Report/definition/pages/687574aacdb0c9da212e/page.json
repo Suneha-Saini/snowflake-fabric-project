@@ -1,0 +1,310 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "687574aacdb0c9da212e",
+  "displayName": "Page 1",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "autoPageGenerationConfig": {
+    "selectedFields": [
+      {
+        "Column": {
+          "Expression": {
+            "SourceRef": {
+              "Entity": "FACT_LOCATION_SUMMARY"
+            }
+          },
+          "Property": "CLIMATE_ZONE"
+        }
+      },
+      {
+        "Column": {
+          "Expression": {
+            "SourceRef": {
+              "Entity": "FACT_LOCATION_SUMMARY"
+            }
+          },
+          "Property": "AVG_MAX_TEMP_C"
+        }
+      },
+      {
+        "Measure": {
+          "Expression": {
+            "SourceRef": {
+              "Entity": "FACT_DAILY_WEATHER"
+            }
+          },
+          "Property": "95th Percentile Max Temp"
+        }
+      }
+    ],
+    "visualContainerConfigurations": [
+      {
+        "name": "a5d9f38a16a713a208b3",
+        "fields": [
+          {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "FACT_DAILY_WEATHER"
+                }
+              },
+              "Property": "95th Percentile Max Temp"
+            }
+          }
+        ]
+      },
+      {
+        "name": "1d9b25c5680017458a29",
+        "fields": [
+          {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "FACT_LOCATION_SUMMARY"
+                }
+              },
+              "Property": "Record Low Temp"
+            }
+          }
+        ]
+      },
+      {
+        "name": "929b8cbbe6d32de7dc8d",
+        "fields": [
+          {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "FACT_LOCATION_SUMMARY"
+                }
+              },
+              "Property": "Record High Temp"
+            }
+          }
+        ]
+      },
+      {
+        "name": "9ca68355c62624d0a0e8",
+        "fields": [
+          {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "FACT_LOCATION_SUMMARY"
+                }
+              },
+              "Property": "CLIMATE_ZONE"
+            }
+          },
+          {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "FACT_DAILY_WEATHER"
+                }
+              },
+              "Property": "95th Percentile Max Temp"
+            }
+          }
+        ]
+      },
+      {
+        "name": "db78d7534b72de139dd0",
+        "fields": [
+          {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "FACT_LOCATION_SUMMARY"
+                }
+              },
+              "Property": "AVG_MAX_TEMP_C"
+            }
+          },
+          {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "FACT_DAILY_WEATHER"
+                }
+              },
+              "Property": "95th Percentile Max Temp"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ed6330b002e398418377",
+        "fields": [
+          {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "FACT_LOCATION_SUMMARY"
+                }
+              },
+              "Property": "CLIMATE_ZONE"
+            }
+          },
+          {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "FACT_LOCATION_SUMMARY"
+                }
+              },
+              "Property": "Rainfall Deviation from Location Baseline"
+            }
+          }
+        ]
+      },
+      {
+        "name": "ae99d01e147de77b22e5",
+        "fields": [
+          {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "FACT_LOCATION_SUMMARY"
+                }
+              },
+              "Property": "CLIMATE_ZONE"
+            }
+          },
+          {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "FACT_LOCATION_SUMMARY"
+                }
+              },
+              "Property": "Avg Historical Location Rainfall"
+            }
+          }
+        ]
+      },
+      {
+        "name": "965e99a76c7eb459e480",
+        "fields": [
+          {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "FACT_LOCATION_SUMMARY"
+                }
+              },
+              "Property": "CLIMATE_ZONE"
+            }
+          },
+          {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "FACT_LOCATION_SUMMARY"
+                }
+              },
+              "Property": "Record Low Temp"
+            }
+          }
+        ]
+      },
+      {
+        "name": "e681c6902bb0bab766a0",
+        "fields": [
+          {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "FACT_LOCATION_SUMMARY"
+                }
+              },
+              "Property": "CLIMATE_ZONE"
+            }
+          },
+          {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "FACT_LOCATION_SUMMARY"
+                }
+              },
+              "Property": "Record High Temp"
+            }
+          }
+        ]
+      },
+      {
+        "name": "d01f3fb2a29d032689bd",
+        "fields": []
+      },
+      {
+        "name": "c76f9071c510693ce7b9",
+        "fields": []
+      },
+      {
+        "name": "5a6cd253c256e0eb969d",
+        "fields": []
+      },
+      {
+        "name": "f9152750c30da0200bda",
+        "fields": []
+      },
+      {
+        "name": "139401476e370160b414",
+        "fields": []
+      },
+      {
+        "name": "3515e7370ee03426563b",
+        "fields": []
+      },
+      {
+        "name": "95e33b6181a954ae94d7",
+        "fields": []
+      },
+      {
+        "name": "10d73831eb63501608c7",
+        "fields": []
+      },
+      {
+        "name": "f632c82130ab6010c791",
+        "fields": [
+          {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "FACT_LOCATION_SUMMARY"
+                }
+              },
+              "Property": "Rainfall Deviation from Location Baseline"
+            }
+          }
+        ]
+      },
+      {
+        "name": "fb70e4951a455b51dc78",
+        "fields": [
+          {
+            "Measure": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "FACT_LOCATION_SUMMARY"
+                }
+              },
+              "Property": "Avg Historical Location Rainfall"
+            }
+          }
+        ]
+      },
+      {
+        "name": "a3e792d1249cb0a54882",
+        "fields": []
+      }
+    ],
+    "layout": {
+      "related": {
+        "version": 1
+      }
+    }
+  }
+}

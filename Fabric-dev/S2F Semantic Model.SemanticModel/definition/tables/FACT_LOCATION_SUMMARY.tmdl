@@ -1,0 +1,209 @@
+table FACT_LOCATION_SUMMARY
+	lineageTag: f03cb88f-2e64-4e8b-9e17-a31e41c06efa
+	sourceLineageTag: [dbo].[FACT_LOCATION_SUMMARY]
+
+	measure 'Record High Temp' = MAX(FACT_LOCATION_SUMMARY[RECORD_HIGH_C])
+		lineageTag: 96a57125-71cf-4ff9-a7d3-0482af6436e1
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Record Low Temp' = MIN(FACT_LOCATION_SUMMARY[RECORD_LOW_C])
+		lineageTag: f05ace98-a3b8-40ae-9a20-59d0db015a3a
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Historical Location Rainfall' = AVERAGE(FACT_LOCATION_SUMMARY[TOTAL_RAINFALL_MM])
+		lineageTag: ce24b317-8a0c-44c3-8b1b-09e5d86555dc
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Rainfall Deviation from Location Baseline' = [Total Rainfall] - SUM(FACT_LOCATION_SUMMARY[TOTAL_RAINFALL_MM])
+		lineageTag: 63d4ad29-a149-4c32-80c6-71f2e9471c61
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LOCATION_KEY
+		dataType: double
+		lineageTag: 8f0fd5df-857e-4cbb-9e1f-f2aebca71ba8
+		sourceLineageTag: LOCATION_KEY
+		summarizeBy: none
+		sourceColumn: LOCATION_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LOCATION_NAME
+		dataType: string
+		lineageTag: 5b17f397-721d-4683-a71b-b1e52e9614ae
+		sourceLineageTag: LOCATION_NAME
+		summarizeBy: none
+		sourceColumn: LOCATION_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATE
+		dataType: string
+		lineageTag: 78258a31-c486-4e69-917d-5cb853ae1eca
+		sourceLineageTag: STATE
+		summarizeBy: none
+		sourceColumn: STATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CLIMATE_ZONE
+		dataType: string
+		lineageTag: e4510458-c9a4-43d1-be71-cfba280ffdb3
+		sourceLineageTag: CLIMATE_ZONE
+		summarizeBy: none
+		sourceColumn: CLIMATE_ZONE
+
+		annotation SummarizationSetBy = Automatic
+
+	column TOTAL_OBSERVATIONS
+		dataType: double
+		lineageTag: ace10ef3-6443-412e-95fc-2466a6887f85
+		sourceLineageTag: TOTAL_OBSERVATIONS
+		summarizeBy: none
+		sourceColumn: TOTAL_OBSERVATIONS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AVG_MAX_TEMP_C
+		dataType: double
+		lineageTag: 9726e355-2722-42a0-9bc3-93ca34f3cddd
+		sourceLineageTag: AVG_MAX_TEMP_C
+		summarizeBy: none
+		sourceColumn: AVG_MAX_TEMP_C
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AVG_MIN_TEMP_C
+		dataType: double
+		lineageTag: 0ba1cc57-3aff-451f-9e5c-21f791c277d3
+		sourceLineageTag: AVG_MIN_TEMP_C
+		summarizeBy: none
+		sourceColumn: AVG_MIN_TEMP_C
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RECORD_HIGH_C
+		dataType: double
+		lineageTag: a8d21ca7-1d96-41ea-a01d-2db72c61457f
+		sourceLineageTag: RECORD_HIGH_C
+		summarizeBy: none
+		sourceColumn: RECORD_HIGH_C
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RECORD_LOW_C
+		dataType: double
+		lineageTag: 2d6fba2c-d9bb-4fa7-a68a-9c0a9cd92c5b
+		sourceLineageTag: RECORD_LOW_C
+		summarizeBy: none
+		sourceColumn: RECORD_LOW_C
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_RAINFALL_MM
+		dataType: double
+		lineageTag: 6b274516-ab6d-43ef-b490-377ff71909ba
+		sourceLineageTag: TOTAL_RAINFALL_MM
+		summarizeBy: none
+		sourceColumn: TOTAL_RAINFALL_MM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AVG_DAILY_RAINFALL_MM
+		dataType: double
+		lineageTag: 2a7d6514-ef34-474c-ae05-fd775720df1e
+		sourceLineageTag: AVG_DAILY_RAINFALL_MM
+		summarizeBy: none
+		sourceColumn: AVG_DAILY_RAINFALL_MM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RAINY_DAYS
+		dataType: double
+		lineageTag: 50796f35-a565-4644-aa3a-d68d5ec2d27f
+		sourceLineageTag: RAINY_DAYS
+		summarizeBy: none
+		sourceColumn: RAINY_DAYS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RAINY_DAY_PCT
+		dataType: double
+		lineageTag: 47eb2480-48ab-4e1c-9293-5caf43bcff2f
+		sourceLineageTag: RAINY_DAY_PCT
+		summarizeBy: none
+		sourceColumn: RAINY_DAY_PCT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AVG_MORNING_HUMIDITY
+		dataType: double
+		lineageTag: f2f6b3f3-f95d-4040-a5e7-7d921a45c4db
+		sourceLineageTag: AVG_MORNING_HUMIDITY
+		summarizeBy: none
+		sourceColumn: AVG_MORNING_HUMIDITY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AVG_WIND_GUST_KMH
+		dataType: double
+		lineageTag: 88a41cc7-b259-4e36-83d1-629a7ee3d540
+		sourceLineageTag: AVG_WIND_GUST_KMH
+		summarizeBy: none
+		sourceColumn: AVG_WIND_GUST_KMH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MAX_WIND_GUST_KMH
+		dataType: double
+		lineageTag: 1da490ff-3803-436b-8e67-eb78e94363ab
+		sourceLineageTag: MAX_WIND_GUST_KMH
+		summarizeBy: none
+		sourceColumn: MAX_WIND_GUST_KMH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FACT_LOCATION_SUMMARY = entity
+		mode: directLake
+		source
+			entityName: FACT_LOCATION_SUMMARY
+			schemaName: dbo
+			expressionSource: 'DirectLake - Snowflake_to_Fabric'
+

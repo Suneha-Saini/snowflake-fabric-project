@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Dataflow",
+    "displayName": "Snowflake dataflow CICD"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "86bb992c-08aa-8fe5-4839-c4282c7c97d1"
+  }
+}

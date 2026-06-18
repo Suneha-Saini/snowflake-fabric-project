@@ -1,0 +1,62 @@
+table DIM_TEMPERATURE_BAND
+	lineageTag: 4fc83e04-17dd-4e83-9d68-eabef6942ff6
+	sourceLineageTag: [dbo].[DIM_TEMPERATURE_BAND]
+
+	column TEMP_BAND_KEY
+		dataType: double
+		lineageTag: 93b09a89-b79d-4b66-985b-381f2934f767
+		sourceLineageTag: TEMP_BAND_KEY
+		summarizeBy: none
+		sourceColumn: TEMP_BAND_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BAND_NAME
+		dataType: string
+		lineageTag: 37bdd3fb-c58f-49b8-a948-cf0cea3552c0
+		sourceLineageTag: BAND_NAME
+		summarizeBy: none
+		sourceColumn: BAND_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column MIN_TEMP_THRESHOLD
+		dataType: double
+		lineageTag: 5579485c-7ede-4904-b214-6da73d8ceccd
+		sourceLineageTag: MIN_TEMP_THRESHOLD
+		summarizeBy: none
+		sourceColumn: MIN_TEMP_THRESHOLD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MAX_TEMP_THRESHOLD
+		dataType: double
+		lineageTag: 909a07ac-75e5-4f05-89d1-dcf5c2d04e7a
+		sourceLineageTag: MAX_TEMP_THRESHOLD
+		summarizeBy: none
+		sourceColumn: MAX_TEMP_THRESHOLD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DESCRIPTION
+		dataType: string
+		lineageTag: 58d9565e-9ba3-4069-a37b-4328f4a4e219
+		sourceLineageTag: DESCRIPTION
+		summarizeBy: none
+		sourceColumn: DESCRIPTION
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_TEMPERATURE_BAND = entity
+		mode: directLake
+		source
+			entityName: DIM_TEMPERATURE_BAND
+			schemaName: dbo
+			expressionSource: 'DirectLake - Snowflake_to_Fabric'
+

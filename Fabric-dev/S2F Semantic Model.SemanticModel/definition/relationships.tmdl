@@ -1,0 +1,30 @@
+relationship 5a47b7c6-2105-7d70-196e-872ee0214634
+	fromColumn: FACT_DAILY_WEATHER.LOCATION_KEY
+	toColumn: DIM_LOCATION.LOCATION_KEY
+
+relationship 643f5dcb-a4b3-23a5-0c57-5f02754dddf4
+	fromColumn: DIM_LOCATION.LOCATION_KEY
+	toColumn: FACT_LOCATION_SUMMARY.LOCATION_KEY
+
+relationship 445dd4b3-9e06-6743-0f9a-b8ecc5b9ac0b
+	fromColumn: FACT_DAILY_WEATHER.GUST_DIR_KEY
+	toColumn: DIM_WIND_DIRECTION.WIND_DIR_KEY
+
+relationship cb9540eb-97b5-ddba-b27a-ef7a05094e70
+	isActive: false
+	fromColumn: FACT_DAILY_WEATHER.WIND_3PM_DIR_KEY
+	toColumn: DIM_WIND_DIRECTION.WIND_DIR_KEY
+
+relationship df0b307e-e5d5-f6ef-f234-b24f77a42ac0
+	isActive: false
+	fromColumn: FACT_DAILY_WEATHER.WIND_SPEED_3PM_KMH
+	toColumn: DIM_WIND_DIRECTION.WIND_DIR_KEY
+
+relationship fa71f2e2-eea0-786b-ca2f-bf98cdee597f
+	fromColumn: FACT_DAILY_WEATHER.TEMPERATURE_BAND
+	toColumn: DIM_TEMPERATURE_BAND.BAND_NAME
+
+relationship 6cf3b85e-cec7-09bb-141e-236922beb7ae
+	fromColumn: FACT_DAILY_WEATHER.RAIN_CATEGORY
+	toColumn: DIM_RAIN_CATEGORY.CATEGORY_NAME
+

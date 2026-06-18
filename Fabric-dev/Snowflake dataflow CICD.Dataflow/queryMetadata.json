@@ -1,0 +1,89 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {
+    "allowModernEvaluationEngine": true
+  },
+  "name": "Snowflake dataflow CICD",
+  "queryGroups": [],
+  "documentLocale": "en-GB",
+  "queriesMetadata": {
+    "DIM_LOCATION": {
+      "queryId": "bf65dba4-562f-4d8f-802f-8be0dd2f3634",
+      "queryName": "DIM_LOCATION",
+      "loadEnabled": false
+    },
+    "DIM_RAIN_CATEGORY": {
+      "queryId": "f49f2e42-c087-40b7-a27f-dc02e4eea7e0",
+      "queryName": "DIM_RAIN_CATEGORY",
+      "loadEnabled": false
+    },
+    "DIM_TEMPERATURE_BAND": {
+      "queryId": "6afed3f0-daab-4c52-bb66-45f179f334e6",
+      "queryName": "DIM_TEMPERATURE_BAND",
+      "loadEnabled": false
+    },
+    "DIM_WIND_DIRECTION": {
+      "queryId": "ddafb065-cf77-4d41-9aaa-0e9cc6b1d8a6",
+      "queryName": "DIM_WIND_DIRECTION",
+      "loadEnabled": false
+    },
+    "FACT_DAILY_WEATHER": {
+      "queryId": "a8640ec7-973e-4c77-bbc6-abb6da5c3deb",
+      "queryName": "FACT_DAILY_WEATHER",
+      "loadEnabled": false
+    },
+    "FACT_LOCATION_SUMMARY": {
+      "queryId": "eef0aef1-97ef-419f-a628-fee5c9403af3",
+      "queryName": "FACT_LOCATION_SUMMARY",
+      "loadEnabled": false
+    },
+    "DIM_LOCATION_DataDestination": {
+      "queryId": "a73848e6-1785-49c7-8843-8f96fac96aeb",
+      "queryName": "DIM_LOCATION_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "DIM_RAIN_CATEGORY_DataDestination": {
+      "queryId": "15cce763-dcee-44ef-92bf-6e8da07fceb7",
+      "queryName": "DIM_RAIN_CATEGORY_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "DIM_TEMPERATURE_BAND_DataDestination": {
+      "queryId": "210ed3fd-a7ab-47c2-a06a-2b26cd2923be",
+      "queryName": "DIM_TEMPERATURE_BAND_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "DIM_WIND_DIRECTION_DataDestination": {
+      "queryId": "23ad91dd-1993-445c-bd3b-434ac325b82f",
+      "queryName": "DIM_WIND_DIRECTION_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "FACT_DAILY_WEATHER_DataDestination": {
+      "queryId": "e0318b6b-73ef-454b-8730-5207a259cb41",
+      "queryName": "FACT_DAILY_WEATHER_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    },
+    "FACT_LOCATION_SUMMARY_DataDestination": {
+      "queryId": "1b031ead-e9b8-471a-b125-8eeeae77a575",
+      "queryName": "FACT_LOCATION_SUMMARY_DataDestination",
+      "isHidden": true,
+      "loadEnabled": false
+    }
+  },
+  "connections": [
+    {
+      "path": "ik75653.central-india.azure.snowflakecomputing.com;COMPUTE_WH",
+      "kind": "Snowflake",
+      "connectionId": "{\"ClusterId\":\"a1e53f5d-4471-4e02-ae54-038449750ac0\",\"DatasourceId\":\"446839c3-9921-44fc-b07d-ed61f53017fd\"}"
+    },
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"a1e53f5d-4471-4e02-ae54-038449750ac0\",\"DatasourceId\":\"4d472c5a-4c26-4990-b58b-f33a57da96e7\"}"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+table DIM_LOCATION
+	lineageTag: 5bad56e9-9fff-4e58-9017-a929fee1c425
+	sourceLineageTag: [dbo].[DIM_LOCATION]
+
+	measure 'Active Locations Count' = DISTINCTCOUNT(DIM_LOCATION[LOCATION_NAME])
+		formatString: 0
+		lineageTag: 9b26ded2-a7da-48f4-b8fb-9255c20a9540
+
+		changedProperty = Name
+
+	column LOCATION_KEY
+		dataType: double
+		lineageTag: 84da2361-92ff-465b-b065-7f7582226d71
+		sourceLineageTag: LOCATION_KEY
+		summarizeBy: none
+		sourceColumn: LOCATION_KEY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LOCATION_NAME
+		dataType: string
+		lineageTag: 4a70e483-e503-4151-bc65-28e984d31feb
+		sourceLineageTag: LOCATION_NAME
+		summarizeBy: none
+		sourceColumn: LOCATION_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATE
+		dataType: string
+		lineageTag: dfaf4fe6-9096-416c-92e1-b5ea625ab7fb
+		sourceLineageTag: STATE
+		summarizeBy: none
+		sourceColumn: STATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CLIMATE_ZONE
+		dataType: string
+		lineageTag: d79e1237-b8e4-471f-a21b-28156d805d2a
+		sourceLineageTag: CLIMATE_ZONE
+		summarizeBy: none
+		sourceColumn: CLIMATE_ZONE
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_LOCATION = entity
+		mode: directLake
+		source
+			entityName: DIM_LOCATION
+			schemaName: dbo
+			expressionSource: 'DirectLake - Snowflake_to_Fabric'
+

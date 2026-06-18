@@ -1,0 +1,9 @@
+expression 'DirectLake - Snowflake_to_Fabric' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/2d53eebb-3a0f-4511-8c28-23a1ae71c035/20bb3788-1611-4e60-997f-cfd8eebd9d41", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 07798780-53de-4fbf-b07a-d10725098f0e
+
+	annotation PBI_IncludeFutureArtifacts = False
+
